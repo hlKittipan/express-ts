@@ -2,8 +2,26 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import { io } from "socket.io-client";
+import {useState} from "react";
+const socket = io("localhost:4000");
 
 const Home: NextPage = () => {
+  const [newName, setName] = useState("")
+
+  socket.on("connect", () => {
+    console.log(socket.id); // x8WIv7-mJelg7on_ALbx
+    console.log(socket.connected); // true
+  });
+
+  socket.on("disconnect", () => {
+    console.log(socket.id); // undefined
+    console.log(socket.connected); // false
+  });
+
+  socket.on('now', data => {
+    setName(data.message);
+  })
   return (
     <div className={styles.container}>
       <Head>
@@ -14,7 +32,7 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Welcome to {newName} <a href="https://nextjs.org">Next.js!</a>
         </h1>
 
         <p className={styles.description}>

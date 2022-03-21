@@ -9,19 +9,19 @@ const socket = io("localhost:4000");
 const Home: NextPage = () => {
   const [newName, setName] = useState("")
 
-  socket.on("connect", () => {
-    console.log(socket.id); // x8WIv7-mJelg7on_ALbx
-    console.log(socket.connected); // true
-  });
-
-  socket.on("disconnect", () => {
-    console.log(socket.id); // undefined
-    console.log(socket.connected); // false
-  });
-
-  socket.on('now', data => {
-    setName(data.message);
-  })
+  // socket.on("connect", () => {
+  //   console.log(socket.id); // x8WIv7-mJelg7on_ALbx
+  //   console.log(socket.connected); // true
+  // });
+  //
+  // socket.on("disconnect", () => {
+  //   console.log(socket.id); // undefined
+  //   console.log(socket.connected); // false
+  // });
+  //
+  // socket.on('now', data => {
+  //   setName(data.message);
+  // })
   return (
     <div className={styles.container}>
       <Head>

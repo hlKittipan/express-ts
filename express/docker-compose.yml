@@ -1,0 +1,10 @@
+version: '3.6'
+services:
+  node-express:
+    container_name: node-express
+    image: hlkittipan/node-express:0.0.2
+    restart: on-failure
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./:/usr/app
